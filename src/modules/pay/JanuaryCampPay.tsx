@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as _ from 'lodash'
-import './CampPay.less'
+import './JanuaryCampPay.less'
 import { connect } from 'react-redux'
 import { ppost, pget, mark } from 'utils/request'
 import { getGoodsType } from 'utils/helpers'
@@ -14,7 +14,7 @@ import { CustomerService } from '../../components/customerservice/CustomerServic
 import { MarkBlock } from './components/markblock/MarkBlock'
 
 @connect(state => state)
-export default class CampPay extends React.Component<any, any> {
+export default class JanuaryCampPay extends React.Component<any, any> {
 
   static contextTypes = {
     router: React.PropTypes.object.isRequired
@@ -114,11 +114,6 @@ export default class CampPay extends React.Component<any, any> {
     })
   }
 
-  handleAppointment() {
-    const { dispath } = this.props
-    dispath(alertMsg('训练营暂未开放'))
-  }
-
   handlePayedBefore() {
     mark({ module: '打点', function: '小课训练营', action: '点击付费', memo: this.state.currentCampMonth })
   }
@@ -140,20 +135,11 @@ export default class CampPay extends React.Component<any, any> {
           <img className="sale-pic" style={{ width: '100%' }}
                src="https://static.iqycamp.com/images/fragment/camp_promotion_01_6.png?imageslim"
                onLoad={() => this.setState({ loading: false })}/>
-
-          {/*<MarkBlock module={'打点'} func={'小课训练营'}*/}
-          {/*action={'点击加入按钮'} memo={this.state.currentCampMonth}*/}
-          {/*className='button-footer' onClick={() => this.handleClickOpenPayInfo(showId)}>*/}
-          {/*<div className="footer-btn">加入训练营</div>*/}
-          {/*</MarkBlock>*/}
-
           <MarkBlock module={'打点'} func={'小课训练营'}
-                     action={'点击训练营预约按钮'} memo={this.state.currentCampMonth}
-                     className='button-footer' onClick={() => this.handleAppointment()}>
-            <div className="footer-btn">预约</div>
+                     action={'点击加入按钮'} memo={this.state.currentCampMonth}
+                     className='button-footer' onClick={() => this.handleClickOpenPayInfo(showId)}>
+            <div className="footer-btn">加入训练营</div>
           </MarkBlock>
-
-
         </div>
       )
     }
@@ -165,7 +151,7 @@ export default class CampPay extends React.Component<any, any> {
     }
 
     return (
-      <div className="camp-pay-container">
+      <div className="january-camp-pay-container">
         <PicLoading show={loading}/>
         {renderPay()}
         {renderKefu()}
